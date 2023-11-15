@@ -8,10 +8,12 @@ struct LevelMeterData
 		if (inOrOut) //true is in rms, false is out rms
 		{
 			rmsIn[channel] = juce::Decibels::gainToDecibels(buffer.getRMSLevel(channel, 0, buffer.getNumSamples()));
+			if (rmsIn[channel] < -60) { rmsIn[channel] = -60; }
 		}
 		else
 		{
 			rmsOut[channel] = juce::Decibels::gainToDecibels(buffer.getRMSLevel(channel, 0, buffer.getNumSamples()));
+			if (rmsOut[channel] < -60) { rmsOut[channel] = -60; }
 		}
 	};
 
